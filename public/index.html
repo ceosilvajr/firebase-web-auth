@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Neighbourly Auth</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.14.4/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.14.4/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.14.4/firebase-auth.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+<body>
+<div class="login-clean">
+    <form onsubmit="login(); return false;">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+        <div class="form-group"><input id="email" class="form-control" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group"><input id="password" class="form-control" type="password" name="password"
+                                       placeholder="Password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+        </div>
+        <p id="token"></p>
+    </form>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    function login() {
+        firebase.auth().signInWithEmailAndPassword(
+            document.getElementById("email").value, document.getElementById("password").value
+        )
+            .then(function () {
+                firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+                    console.log(idToken);
+                    document.getElementById("token").innerHTML = "Check console to see token!";
+                }).catch(function (error) {
+                    document.getElementById("token").innerHTML = error.message;
+                });
+            })
+            .catch(function (error) {
+                document.getElementById("token").innerHTML = error.message;
+            });
+    }
+</script>
+
+</body>
+</html>
