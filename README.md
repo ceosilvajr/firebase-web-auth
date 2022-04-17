@@ -6,8 +6,8 @@ Go to `.fiebaserc` and change the project-id.
 `$ firebase emulators:start`
 
 ## Screenshots
-###UI
+### UI
 ![](public/assets/images/ui.png)
 
-###Token
+### Token
 ![](public/assets/images/token.png)
